@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bogo Electronics</title>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+      }
+    
+      .nav {
+        background-color: #00bcd4;
+        padding: 15px;
+      }
+    
+      .nav h1 {
+        color: white;
+        cursor: pointer;
+      }
+    
+      .nav a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    
+      .nav a:hover {
+        color: #26a69a;
+        text-decoration: underline;
+      }
+    
+      #product-container {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+      }
+    
+      #filter {
+        padding: 10px;
+      }
+    
+      button {
+        background-color: #00bcd4;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        color: white;
+      }
+    
+      button:hover {
+        background-color: #26a69a;
+      }
+    
+      .product-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 5px;
+      }
+    
+      .product-card h3 {
+        margin-top: 0;
+      }
+    
+      .product-card img {
+        width: 150px;
+        padding: 20px;
+      }
+    
+      .product-card p {
+        line-height: 22px;
+      }
+      
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <h1>BOGO Electronics</h1>
+      <a href="./product-page.html">Home</a>
+      <a href="./cart.html">Cart</a>
+    </div>
+    <!-- Use this Select Tag for Filtering the Products  -->
+    <select id="filter">
+      <option value="">Filter By Category</option>
+      <option value="Laptop">Laptop</option>
+      <option value="Mobile">Mobile</option>
+      <option value="Speakers">Speakers</option>
+    </select>
+    <div id="product-container">
+    </div>
+  </body>
+  <script>
+let alu = [];
+let url = "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products";
+
+
+    async function getData(){
+            let res = await fetch(url);
+            let out = await res.json();
+            alu=out.data;
+            displayCard(alu);
+            console.log(alu);
+    }
+
+    getData();
+
+    
+    function displayCard(prod){
+        let productContainer = document.getElementById('product-container');
+        let data = "";
+        for(let i in prod){
+            data += `<div class="product-card">
+            <img src="${prod[i].img}" alt="product image" />
+            <h3>${prod[i].brand}</h3>
+            <p>price:-  ${prod[i].price}</p>
+            <p>${prod[i].details}</p>
+            <p>${prod[i].category}</p>
+              <button onclick="addtocart(${i})">Add to cart</button>
+          </div>`;
+        }
+        productContainer.innerHTML = data;
+    }
+
+    function addtocart(i){
+        let cart = [];
+        let cartdata = {
+            id: alu[i].id,
+            name: alu[i].brand,
+            price: alu[i].price,
+            img: alu[i].img,
+            category: alu[i].category
+        }
+        let oldData = localStorage.getItem('cart');
+        oldData = JSON.parse(oldData);
+      if(oldData==null){
+          cart.push(cartdata)
+          localStorage.setItem('cart',JSON.stringify(cart));
+          alert('Product Added to Cart');
+      }
+      else{
+          let oldCart = oldData;
+          
+         if(check(oldCart,cartdata.id)==true){
+              oldCart.push(cartdata);
+              localStorage.setItem('cart',JSON.stringify(oldCart));
+              alert('Product Added to Cart');
+          }
+          else{
+              alert('Product Already In Cart');
+          }
+      }
+    }
+    function check(oldCart,id){
+        for(let i=0;i<oldCart.length;i++){
+            if(oldCart[i].id==id){
+                return false;
+            }
+        }
+        return true;
+    }
+//  filter
+function filter(){
+let sel = document.getElementById('filter');
+let val = sel.options[sel.selectedIndex].value;
+console.log(val);
+let filterBy = alu.filter((item) =>{
+    return item.category == val;
+})
+console.log(filterBy);
+displayCard(filterBy);
+}
+document.getElementById('filter').addEventListener('change',filter);
+</script>
+</html>

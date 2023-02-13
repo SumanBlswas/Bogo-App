@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product-Page</title>
+</head>
+<link rel="stylesheet" href="index.css">
+<style>
+    #ju {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 250px);
+        gap: 25px;
+        position: relative;
+        top: 40em;
+    }
+
+    #ju>div:nth-child(n) {
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        /* text-align: center; */
+        place-items: center;
+        padding-top: 28px;
+    }
+
+    #ju>div:nth-child(1) {
+        background-color: blue;
+        color: whitesmoke;
+    }
+
+    #ju>div:nth-child(2) {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        background-color: aqua;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        font-size: xx-large;
+        font-weight: 1000;
+    }
+
+    #ju>div:nth-child(3) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        background-color: blanchedalmond;
+    }
+
+    #ju>div:nth-child(4) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        background-color: brown;
+        color: white;
+    }
+
+    span {
+        top: 20em;
+    }
+
+    .footer-list {
+        top: 50em;
+    }
+
+    button {
+        align-items: center;
+        background-color: #fee6e3;
+        border: 2px solid #111;
+        border-radius: 8px;
+        box-sizing: border-box;
+        color: #111;
+        cursor: pointer;
+        display: flex;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        height: 48px;
+        justify-content: center;
+        line-height: 24px;
+        max-width: 100%;
+        padding: 0 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    button:after {
+        background-color: #111;
+        border-radius: 8px;
+        content: "";
+        display: block;
+        height: 48px;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        top: -2px;
+        transform: translate(8px, 8px);
+        transition: transform .2s ease-out;
+        z-index: -1;
+    }
+
+    button:hover:after {
+        transform: translate(0, 0);
+    }
+
+    button:active {
+        background-color: #ffdeda;
+        outline: 0;
+    }
+
+    button:hover {
+        outline: 0;
+    }
+
+    @media (min-width: 768px) {
+        button {
+            padding: 0 40px;
+        }
+    }
+
+    h2{
+        text-decoration: overline solid rgb(255, 153, 0);
+        font-family: 'Courier New', Courier, monospace;
+        letter-spacing: 5px;
+        border-spacing: 5px;
+        text-transform: uppercase;
+        margin-top: -10px;
+    }
+
+    #ju>div:nth-child(2)>h1{
+        margin-top: -30px;
+    }
+</style>
+
+<body>
+    <header class="scan">
+        <a href="#" class="logo">Bogo</a>
+        <span class="revv1"><img src="infography.gif" alt=""></span>
+        <span id="revv2"><img src="letter-x.gif" alt=""></span>
+        <div class="io">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="">Portfolio</a></li>
+                <li><a href="">Team</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <span>
+        <h1 data-text="Hello!">Hello!</h1>
+    </span>
+    <!-- <section>
+        <h1>WELCOME TO BOGO PLANNET !</h1>
+    </section>
+     -->
+    <div id="ju">
+        <div>
+            <h1>Shopping Shoes</h1>
+            <p>We are offering higher quality of lether and Vegan Shoes</p>
+            <button>Shop Now</button>
+        </div>
+        <div>
+            <h1>Travel</h1>
+            <h2>Our Goal is to make you feel happy so what are you waiting for?</h2>
+            <button>Let's go for a Vaccation</button>
+        </div>
+        <div>
+            <h1>Shopping Electronics</h1>
+            <p>We are offering higher quality of Electronics Products</p>
+            <button>Shop Now</button>
+        </div>
+        <div>
+            <h1>Time is Important</h1>
+            <p>Check our Inbuilt Stopwatch to check your decision making Time.</p>
+            <button>Start the Stopwatch</button>
+        </div>
+    </div>
+    <div id="footer-last" class="footer-list">
+        <div>
+            <div>
+                <a>FAQs</a>
+                <br><br>
+                <a href="sign_in.html">Sign in</a>
+            </div>
+            <div>
+                Inclusion statement
+                <br><br>
+                About Us
+            </div>
+            <div>
+                <img src="b.png" alt=""><br><br>
+                Our service partners—inns, support,<br>
+                solution, and more—are <br>
+                supported by an experienced <br> account
+                management team. Well-<br>informed on market conditions and
+                <br> design trends, they provide insights <br>
+                and ideas
+                to help you grow your <br> business.
+            </div>
+        </div>
+        <hr>
+        <div>
+            <p>© 2022 Suman Biswas Company. All rights reserved. Trademarks and logos are the property of their
+                respective
+                owners. Confidential and proprietary. <br>
+                Terms of Use | Privacy Policy | Suman Biswas Company Cookie Policy | Government Regulations | Partner
+                Central
+                Help | EU Vacation Rental agreement</p>
+        </div>
+    </div>
+    <script>
+        let biko = document.querySelector("#ju>div:nth-child(1)>button");
+
+        biko.addEventListener('click', function(){
+            window.location.assign('mens.html');
+        })
+
+        let kiko = document.querySelector("#ju>div:nth-child(3)>button");
+
+        kiko.addEventListener('click', function(){
+            window.location.assign('electronics.html')
+        })
+
+        let jiko = document.querySelector("#ju>div:nth-child(4)>button");
+
+        jiko.addEventListener('click', function(){
+            window.open('stopwatch.html');
+        })
+
+        let viko = document.querySelector('#ju>div:nth-child(2)');
+
+        viko.addEventListener('click', function(){
+            window.location.assign('travel.html');
+        })
+    </script>
+    <script src="index.js"></script>

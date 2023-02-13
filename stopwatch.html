@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Stopwatch</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 30px;
+            background: #95a5a6;
+            color: white;
+            font-family: cursive;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: 100;
+            margin: 20px 0px;
+            font-family: cursive;
+
+        }
+
+        #stopwatch {
+            font-size: 40px;
+        }
+
+        button {
+            appearance: none;
+            background-color: #FFFFFF;
+            border-radius: 40em;
+            border-style: none;
+            box-shadow: #ADCFFF 0 -12px 6px inset;
+            box-sizing: border-box;
+            color: #000000;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -.24px;
+            margin: 0;
+            outline: none;
+            padding: 1rem 1.3rem;
+            quotes: auto;
+            text-align: center;
+            text-decoration: none;
+            transition: all .15s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            font-family: cursive;
+        }
+
+        button:hover {
+            background-color: #FFC229;
+            box-shadow: #FF6314 0 -6px 8px inset;
+            transform: scale(1.125);
+        }
+
+        button:active {
+            transform: scale(1.025);
+        }
+
+        @media (min-width: 768px) {
+            button {
+                font-size: 1.5rem;
+                padding: .75rem 2rem;
+            }
+        }
+
+        #sw {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 400px;
+            margin: 20px auto;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+            background: #000;
+            box-shadow: rgba(0, 0, 0, 0.7) 0px 30px 90px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sw">
+        <h2>Suman's</h2>
+        <h1>Stopwatch</h1>
+        <div id="stopwatch">0s 0</div>
+        <br>
+        <button onclick="start()">Start</button>
+        <button onclick="stop()">Stop</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+</body>
+
+</html>
+<script>
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+    let mSeconds = 0;
+    let t;
+    function add() {
+
+        mSeconds++;
+        if (mSeconds >= 100) {
+            seconds++;
+            mSeconds = 0;
+        }
+        else {
+            seconds = seconds;
+        }
+        if (seconds >= 60) {
+            minutes++;
+            seconds = 0;
+        }
+        else {
+            minutes = minutes;
+        }
+        if (minutes >= 60) {
+            hours++;
+            minutes = 0;
+        }
+        if (hours == 0 && minutes == 0) {
+            document.getElementById("stopwatch").innerHTML = seconds + "s" + " " + mSeconds;
+        } else if (hours == 0) {
+            document.getElementById("stopwatch").innerHTML = minutes + "m" + ":" + seconds + "s" + " " + mSeconds;
+        }
+        else {
+            document.getElementById("stopwatch").innerHTML = hours + "h" + ":" + minutes + " m" + ":" + seconds + "s" + " " + mSeconds;
+        }
+        timer();
+    }
+
+    function timer() {
+        t = setTimeout(add, 10);
+    }
+
+    function start() {
+        timer();
+    }
+    function stop() {
+        clearTimeout(t);
+    }
+    function reset() {
+        mSeconds = 0;
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        document.getElementById("stopwatch").innerHTML = "0s 0";
+        clearTimeout(t);
+    }
+</script>

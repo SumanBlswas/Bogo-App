@@ -1,0 +1,154 @@
+body {
+    background: linear-gradient(to right, #a92c2c, #d49c6c, #fff4b4);
+}
+
+.container {
+    display: grid;
+}
+
+.row {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 25px;
+    border-radius: 10px;
+}
+
+.col-md-3 {
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #00ff04, #0c04ff);
+}
+
+img {
+    height: 300px;
+    width: 100%;
+}
+
+h5 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+button {
+    border: none;
+    outline: none;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 0;
+    margin-top: 30px;
+    width: 50%;
+    margin-left: 25%;
+}
+
+
+button:hover {
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+    transition: 1s;
+}
+
+.card {
+
+    border: 1px solid black;
+    box-shadow: 10px 20px 30px grey;
+    border-radius: 10px;
+    margin: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.802);
+    transition: 1s;
+    background: rgb(0, 255, 195);
+    cursor:grab;
+}
+
+.card img {
+    border-radius: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 50px 0 rgb(255, 0, 0);
+}
+
+h1{
+    text-align: center;
+    font-size: xxx-large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a{
+    text-align: start;
+    font-size: xxx-large;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-decoration: none;
+    color: #00ff04;
+    margin-left: 5%;
+}
+
+.nik{
+    width: 16%;
+    border-radius: 16px;
+    background: linear-gradient(to right, #151787, #7300ff);
+    border: 4px solid white;
+    margin-left: 4%;
+    margin-bottom: 7%;
+}
+
+.nik-2{
+    width: 20%;
+    border-radius: 16px;
+    background: linear-gradient(to right, #151787, #7300ff);
+    border: 4px solid white;
+    margin-left: 2.35%;
+    margin-bottom: 10%
+}
+
+.nik-3 img{
+    width: 20%;
+    height: auto;
+    margin-left: 200%;
+    margin-top: -100%;
+}
+
+
+#rivv{
+    display: flex;
+}
+
+h4{
+    font-size: xx-large;
+    margin-left: 215%;
+    
+}
+
+
+@media screen and (max-width: 1000px) {
+    .row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .row {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 15px;
+    }
+}
+
+@media screen and (max-width: 564px) {
+    .row {
+        grid-template-columns: repeat(1, 1fr);
+        grid-column-gap: 15px;
+    }
+}

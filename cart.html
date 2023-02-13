@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page</title>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+      }
+    
+      .nav {
+        background-color: #00bcd4;
+        padding: 15px;
+      }
+    
+      .nav h1 {
+        color: white;
+        cursor: pointer;
+      }
+    
+      .nav a {
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    
+      .nav a:hover {
+        color: #26a69a;
+        text-decoration: underline;
+      }
+    
+      #cart-container {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+      }
+    
+      #filter {
+        padding: 10px;
+      }
+    
+      button {
+        background-color: #00bcd4;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        color: white;
+      }
+    
+      button:hover {
+        background-color: #26a69a;
+      }
+    
+      .product-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 5px;
+      }
+    
+      .product-card h3 {
+        margin-top: 0;
+      }
+    
+      .product-card img {
+        width: 150px;
+        padding: 20px;
+      }
+    
+      .product-card p {
+        line-height: 22px;
+      }
+
+      #il{
+        text-align: center;
+        padding-top: 90px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <h1>BOGO Electronics</h1>
+      <a href="electronics.html">Home</a>
+      <a href="./cart.html">Cart</a>
+    </div>
+    <div id="cart-container">
+      <!-- Here Append All the cart Products  -->
+    </div>
+    <div id="il">
+      <button>Buy All Now</button>
+    </div>    
+  </body>
+  <script>
+  
+  //Get the data from local storage
+let data=localStorage.getItem("cart");
+let total=0;
+
+// convert data into json object
+data=JSON.parse(data);
+
+// now loop over the data
+for(let i=0;i<data.length;i++){
+    let item=data[i];
+    // console.log(item);
+    // create the cart card
+    let cartCard=document.createElement("div");
+    cartCard.setAttribute("class","product-card");
+    cartCard.setAttribute("id",i);
+
+    // create image
+    let image=document.createElement("img");
+    image.setAttribute("src",item.img);
+    cartCard.appendChild(image);
+
+    // create brand
+    let brand=document.createElement("h2");
+    brand.innerHTML=item.name;
+    cartCard.appendChild(brand);
+
+    // create price
+    let price=document.createElement("h3");
+    price.innerHTML=item.price;
+    cartCard.appendChild(price);
+
+    // create category
+    let category=document.createElement("p");
+    category.innerHTML=item.category;
+    cartCard.appendChild(category);
+
+    // create quantity
+    let quantity=document.createElement("span");
+    quantity.setAttribute("id",i);
+    quantity.innerHTML=1;
+    cartCard.appendChild(quantity);
+
+    // create increment button
+    let increment=document.createElement("button");
+    increment.innerHTML="+";
+    increment.setAttribute("id",i);
+    increment.setAttribute("onclick","increment("+i+","+item.price+")");
+    cartCard.appendChild(increment);
+
+    // create decrement button
+    let decrement=document.createElement("button");
+    decrement.innerHTML="-";
+    decrement.setAttribute("id",i);
+    decrement.setAttribute("onclick","decrement("+i+","+item.price+")");
+    cartCard.appendChild(decrement);
+
+    // create remove button
+    let remove=document.createElement("button");
+    remove.innerHTML="Remove";
+    remove.setAttribute("id",i);
+    remove.setAttribute("onclick","remove("+i+")");
+    cartCard.appendChild(remove);
+
+    // add the cartCard to the cartContainer
+    document.getElementById("cart-container").appendChild(cartCard);
+
+    // calculate total
+    total=total+(1*item.price);
+}
+
+
+function remove(id){
+    let cartCard=document.getElementById(id);
+    cartCard.parentNode.removeChild(cartCard);
+
+    // remove data from local storage
+    data.splice(id,1);
+    localStorage.setItem("cart",JSON.stringify(data));
+}
+
+//change the local storage also and important thing is show the updated cart
+function increment(id,price){
+    let quant=document.getElementById(id);
+    let items=data[id];
+    quant.innerHTML=parseInt(quant.innerHTML)+1;
+    items.quantity=parseInt(items.quantity)+1;
+    total=total+price;
+    document.getElementById("cart-total").innerHTML=total;
+    localStorage.setItem("cart",JSON.stringify(data));
+}
+
+//change the local storage also and important thing is show the updated cart
+function decrement(id,price){
+    let quant=document.getElementById(id);
+    let items=data[id];
+    //quantity cannot be 0
+    if(quant.innerHTML>0){
+        quant.innerHTML=parseInt(quant.innerHTML)-1;
+        items.quantity=parseInt(items.quantity)-1;
+        total=total-price;
+        document.getElementById("cart-total").innerHTML=total;
+        localStorage.setItem("cart",JSON.stringify(data));
+    }
+}
+  
+
+let fiko = document.querySelector('#il');
+
+fiko.addEventListener('click', function(){
+  window.location.assign('payment-1.html')
+})
+  </script>
+</html>
